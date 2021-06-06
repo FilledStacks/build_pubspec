@@ -5,7 +5,7 @@ homepage: https://github.com/dartsidedev/build_pubspec
 environment:
   sdk: '>=2.3.0 <3.0.0'
 dependencies:
-  build: '>=0.12.1 <2.0.0'
+  build: ^2.0.1
   pubspec_parse: ^0.1.2+2
   source_gen: ^1.0.0
   meta: ^1.0.0
