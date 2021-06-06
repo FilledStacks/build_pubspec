@@ -6,7 +6,7 @@ environment:
   sdk: '>=2.3.0 <3.0.0'
 dependencies:
   build: ^2.0.1
-  pubspec_parse: ^0.1.2+2
+  pubspec_parse: ^1.0.0
   source_gen: ^1.0.0
   meta: ^1.0.0
   ## TODO(vargavince91): Do we still need this?
