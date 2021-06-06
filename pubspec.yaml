@@ -7,7 +7,7 @@ environment:
 dependencies:
   build: '>=0.12.1 <2.0.0'
   pubspec_parse: ^0.1.2+2
-  source_gen: ^0.9.4
+  source_gen: ^1.0.0
   meta: ^1.0.0
   ## TODO(vargavince91): Do we still need this?
   # Not imported in code, but used to constrain `build.yaml` requirements
