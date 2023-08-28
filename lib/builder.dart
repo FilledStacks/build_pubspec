@@ -66,9 +66,7 @@ Future<String> _build(BuildStep buildStep, _FieldsContainer fields) async {
       '''// Generated file. Do not modify.\n//\n// This file is generated using the build_pubspec package.\n// For more information, go to: https://pub.dev/packages/build_pubspec''';
   buff.writeln(_header);
 
-  if (pubspec.authors != null &&
-      pubspec.authors.isNotEmpty &&
-      fields.authorsFieldName.isNotEmpty) {
+  if (pubspec.authors.isNotEmpty && fields.authorsFieldName.isNotEmpty) {
     buff.writeln('''const List<String> ${fields.authorsFieldName} = [''');
     final writeAuthor = (author) => buff.writeln('''  '$author',''');
     pubspec.authors.forEach(writeAuthor);
@@ -96,7 +94,7 @@ Future<String> _build(BuildStep buildStep, _FieldsContainer fields) async {
         """const String ${fields.issueTrackerFieldName} = '''${pubspec.issueTracker}''';""");
   }
 
-  if (pubspec.name != null && fields.nameFieldName.isNotEmpty) {
+  if (fields.nameFieldName.isNotEmpty) {
     buff.writeln(
         """const String ${fields.nameFieldName} = '''${pubspec.name}''';""");
   }
@@ -132,9 +130,9 @@ class _FieldsContainer {
   /// Build field name based on the field [name] and the passed in [config].
   static String _f(Map<String, dynamic> config, String name) {
     final field = _snakeToCamel(name);
-    if (config == null) return field;
+    if (config.isEmpty) return field;
     final key = '${name}_field_name';
-    return config[key] as String ?? field;
+    return config[key] as String? ?? field;
   }
 
   final String authorsFieldName;
@@ -150,8 +148,8 @@ class _FieldsContainer {
 String _destinationFromBuilderOptions(BuilderOptions? options) {
   const defaultDestination = 'lib/src/pubspec.dart';
   if (options == null) return defaultDestination;
-  if (options.config == null) return defaultDestination;
-  return options.config['destination_file'] as String ?? defaultDestination;
+  if (options.config.isEmpty) return defaultDestination;
+  return options.config['destination_file'] as String? ?? defaultDestination;
 }
 
 String _snakeToCamel(String snake) {
