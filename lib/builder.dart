@@ -8,22 +8,23 @@
 library builder;
 
 import 'dart:async';
+
 import 'package:build/build.dart';
 import 'package:pubspec_parse/pubspec_parse.dart';
 import 'package:source_gen/source_gen.dart';
 
-Builder buildPubspec([BuilderOptions options]) {
+Builder buildPubspec([BuilderOptions? options]) {
   return _PubspecBuilder(options);
 }
 
-Builder buildPubspecPart([BuilderOptions options]) {
+Builder buildPubspecPart([BuilderOptions? options]) {
   final fields = _FieldsContainer.fromBuilderOptions(options);
   final generators = [_PubspecPartGenerator(fields)];
   return PartBuilder(generators, '.pubspec.g.dart');
 }
 
 class _PubspecBuilder implements Builder {
-  _PubspecBuilder([BuilderOptions options])
+  _PubspecBuilder([BuilderOptions? options])
       : fields = _FieldsContainer.fromBuilderOptions(options),
         destination = _destinationFromBuilderOptions(options);
 
@@ -124,7 +125,7 @@ class _FieldsContainer {
         repositoryFieldName = _f(config, 'repository'),
         versionFieldName = _f(config, 'version');
 
-  factory _FieldsContainer.fromBuilderOptions(BuilderOptions options) {
+  factory _FieldsContainer.fromBuilderOptions(BuilderOptions? options) {
     return _FieldsContainer(options?.config ?? {});
   }
 
@@ -146,7 +147,7 @@ class _FieldsContainer {
   final String versionFieldName;
 }
 
-String _destinationFromBuilderOptions(BuilderOptions options) {
+String _destinationFromBuilderOptions(BuilderOptions? options) {
   const defaultDestination = 'lib/src/pubspec.dart';
   if (options == null) return defaultDestination;
   if (options.config == null) return defaultDestination;

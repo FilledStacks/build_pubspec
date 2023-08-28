@@ -1,22 +1,22 @@
 import 'dart:convert';
 
 import 'package:build/build.dart';
-import 'package:build_test/build_test.dart';
 import 'package:build_pubspec/builder.dart';
+import 'package:build_test/build_test.dart';
 import 'package:checked_yaml/checked_yaml.dart';
 import 'package:test/test.dart';
 
 // Simple wrapper function to make test cases more readable
 Future<dynamic> Function() build({
-  Map<String, String> pubspecContent,
-  String expectedOutput,
-  Map<String, dynamic> config,
+  required Map<String, String> pubspecContent,
+  String? expectedOutput,
+  Map<String, dynamic>? config,
 }) {
   return () {
     return testBuilder(
-      buildPubspec(BuilderOptions(config)),
+      buildPubspec(BuilderOptions(config ?? {})),
       <String, String>{'pkg|pubspec.yaml': jsonEncode(pubspecContent)},
-      outputs: {'pkg|lib/src/pubspec.dart': expectedOutput},
+      outputs: {'pkg|lib/src/pubspec.dart': expectedOutput ?? ''},
     );
   };
 }
